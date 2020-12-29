@@ -7,20 +7,20 @@
         integrity="sha512-xA6Hp6oezhjd6LiLZynuukm80f8BoZ3OpcEYaqKoCV3HKQDrYjDE1Gu8ocxgxoXmwmSzM4iqPvCsOkQNiu41GA==" crossorigin="anonymous" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
-    <title>Birthday Manager</title>
+    <title>Workout Roulette</title>
 </head>
 <body>
 	<header>
         <!-- top navbar -->
-		<nav class="nav-extended text-shadow light-blue darken-1">
+		<nav class="charcole-grey nav-extended text-shadow">
 			<div class="nav-wrapper">
-				<a href="{{ url_for('get_birthdays') }}" class="brand-logo">Birthday Manager</a>
+				<a href="{{ url_for('get_workouts') }}" class="brand-logo left"><img src="/images/workout_roulette_logo.png" class="rounded-circle align-self-center p-1" alt="logo" height=100 width=100></a>
 				<a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
 				<ul class="right hide-on-med-and-down">
-					<li><a href="{{ url_for('get_birthdays') }}">Home</a></li>
+					<li><a href="{{ url_for('get_workouts') }}">Home</a></li>
 					<li><a href="#">Profile</a></li>
-					<li><a href="#">Add Birthday</a></li>
-					<li><a href="#">View Upcoming</a></li>
+					<li><a href="#">Create Workout</a></li>
+					<li><a href="#">Previous Workouts</a></li>
 					<li><a href="#">Log Out</a></li>
 					<li><a href="#">Log In</a></li>
 					<li><a href="{{ url_for('register') }}">Register</a></li>
@@ -30,14 +30,14 @@
 
         <!-- mobile sidenav -->
 		<ul class="sidenav" id="mobile-demo">
-            <li><h4 class="center-align light-blue-text text-darken 4">Task Manager</h4></li>
-            <li><a href="{{ url_for('get_birthdays') }}">Home</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">New Task</a></li>
-            <li><a href="#">Manage Categories</a></li>
-            <li><a href="#">Log Out</a></li>
-            <li><a href="#">Log In</a></li>
-            <li><a href="{{ url_for('register') }}">Register</a></li>
+            <li><h4 class="center-align off_white">Workout Roulette</h4></li>
+            <li><a href="{{ url_for('get_workouts') }}">Home</a></li>
+					<li><a href="#">Profile</a></li>
+					<li><a href="#">Create Workout</a></li>
+					<li><a href="#">Previous Workouts</a></li>
+					<li><a href="#">Log Out</a></li>
+					<li><a href="#">Log In</a></li>
+					<li><a href="{{ url_for('register') }}">Register</a></li>
 		</ul>
 	</header>
   {% block content %}  

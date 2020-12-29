@@ -1,3 +1,19 @@
 .text-shadow {
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
+
+.charcole-grey {
+    background-color: #303030;
+}
+
+.coral_red {
+    color: #ff5757;
+}
+
+.off_white{
+    color: #f6f3e4;
+}
+
+.dark.red {
+color: #c92e00;
+}
