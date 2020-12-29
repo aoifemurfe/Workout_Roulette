@@ -14,7 +14,7 @@
         <!-- top navbar -->
 		<nav class="charcole-grey nav-extended text-shadow">
 			<div class="nav-wrapper">
-				<a href="{{ url_for('get_workouts') }}" class="brand-logo left"><img src="/images/workout_roulette_logo.png" class="rounded-circle align-self-center p-1" alt="logo" height=100 width=100></a>
+				<a href="{{ url_for('get_workouts') }}" class="brand-logo left"><img src= "{{ url_for('static', filename='images/workout_roulette_logo.png') }}" class="rounded-circle align-self-center p-1" alt="logo" height=100 width=100></a>
 				<a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
 				<ul class="right hide-on-med-and-down">
 					<li><a href="{{ url_for('get_workouts') }}">Home</a></li>

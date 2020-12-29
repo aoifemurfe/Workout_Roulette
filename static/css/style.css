@@ -6,6 +6,17 @@
     background-color: #303030;
 }
 
+.rounded-circle {
+    border-radius: 50%!important;
+}
+.align-self-center {
+    align-self: center!important;
+}
+
+.p-1 {
+    padding: .25rem!important;
+}
+
 .coral_red {
     color: #ff5757;
 }
