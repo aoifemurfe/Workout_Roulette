@@ -23,7 +23,7 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_workouts")
 def get_workouts():
-    workouts = mongo.db.users.find()
+    workouts = mongo.db.workouts.find()
     return render_template("workouts.html", workouts=workouts)
 
 @app.route("/register", methods=["GET", "POST"])
