@@ -7,7 +7,7 @@ $(document).ready(function () {
 var colors = ["#B8D430", "#3AB745", "#029990", "#3501CB",
              "#2E2C75", "#673A7E", "#CC0071", "#F80120",
              "#F35B20", "#FB9A00", "#FFCC00", "#FEF200"];
-var workouts = ["Burpees", "Push Ups", "Air Squats", "Alternating Lunges",
+var workouts = ["Burpees", "Push Ups", "Air Squats", "Lunges",
                    "Shuttle Runs", "Jumping Jacks", "Plank", "Sit Ups",
                    "Tricep Dips", "Mountain Climbers", "Bear Crawl", "Glute Bridges"];
 
