@@ -7,9 +7,9 @@ $(document).ready(function () {
 var colors = ["#B8D430", "#3AB745", "#029990", "#3501CB",
              "#2E2C75", "#673A7E", "#CC0071", "#F80120",
              "#F35B20", "#FB9A00", "#FFCC00", "#FEF200"];
-var restaraunts = ["Wendy's", "McDonalds", "Chick-fil-a", "Five Guys",
-                   "Gold Star", "La Mexicana", "Chipotle", "Tazza Mia",
-                   "Panera", "Just Crepes", "Arby's", "Indian"];
+var workouts = ["Burpees", "Push Ups", "Air Squats", "Alternating Lunges",
+                   "Shuttle Runs", "Jumping Jacks", "Plank", "Sit Ups",
+                   "Tricep Dips", "Mountain Climbers", "Bear Crawl", "Glute Bridges"];
 
 var startAngle = 0;
 var arc = Math.PI / 6;
@@ -56,7 +56,7 @@ function drawRouletteWheel() {
       ctx.translate(250 + Math.cos(angle + arc / 2) * textRadius,
                     250 + Math.sin(angle + arc / 2) * textRadius);
       ctx.rotate(angle + arc / 2 + Math.PI / 2);
-      var text = restaraunts[i];
+      var text = workouts[i];
       ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
       ctx.restore();
     }
@@ -102,7 +102,7 @@ function stopRotateWheel() {
   var index = Math.floor((360 - degrees % 360) / arcd);
   ctx.save();
   ctx.font = 'bold 30px Helvetica, Arial';
-  var text = restaraunts[index]
+  var text = workouts[index]
   ctx.fillText(text, 250 - ctx.measureText(text).width / 2, 250 + 10);
   ctx.restore();
 }

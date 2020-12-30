@@ -2,7 +2,19 @@
 
 {% block content %}
 <div class="row">
- <input type="button" value="spin" onclick="spin();" style="float:left;" />
- <canvas id="canvas" width="500" height="500"></canvas>
- </div>
+    <div class="col s6">
+        <div class="card">
+            <div class="card-content center-align">
+                <canvas id="canvas" width="500" height="500"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col s6">
+        <div class="card">
+            <button class="btn waves-effect waves-light charcole-grey center-align" type="submit" name="action" onclick="spin();">Spin!
+            </button>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
