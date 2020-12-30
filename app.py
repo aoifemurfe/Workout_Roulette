@@ -26,6 +26,10 @@ def get_workouts():
     workouts = mongo.db.workouts.find()
     return render_template("workouts.html", workouts=workouts)
 
+@app.route("/create_workout")
+def create_workout():
+    return render_template("create_workout.html")
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
