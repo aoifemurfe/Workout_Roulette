@@ -9,7 +9,7 @@
 </div>
 
 <div class="row">
-    <form class="col s12 m8 offset-m2" method = "POST" action = "{{url_for('register')}}">
+    <form class="col s12 m8 offset-m2" method="POST" action="{{url_for('register')}}">
         <div class="card">
             <div class="card-content center-align">
                 <form class="col s6">
@@ -18,8 +18,9 @@
                         </div>
                         <div class="input-field col s8">
                             <i class="fas fa-user coral_red prefix"></i>
-                            <input id="icon_prefix" type="text" class="validate">
-                            <label for="icon_prefix">Username</label>
+                            <input id="username" name="username" type="text" minlength="5" maxlength="15"
+                                pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+                            <label for="username">Username</label>
                         </div>
                         <div class="col s2">
                         </div>
@@ -29,8 +30,9 @@
                         </div>
                         <div class="input-field col s8">
                             <i class="fas fa-lock coral_red prefix"></i>
-                            <input id="Password" type="tel" class="password">
-                            <label for="Password">Password</label>
+                            <input id="password" name="password" type="password" minlength="5" maxlength="15"
+                                pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+                            <label for="password">Password</label>
                         </div>
                         <div class="col s2">
                         </div>
