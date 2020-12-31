@@ -26,9 +26,11 @@ def get_workouts():
     workouts = mongo.db.workouts.find()
     return render_template("workouts.html", workouts=workouts)
 
+
 @app.route("/create_workout")
 def create_workout():
     return render_template("create_workout.html")
+
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -57,3 +59,4 @@ if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
             debug=True)
+
