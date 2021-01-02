@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="row">
+<div class="row removemargin">
     <div class="col s12">
         <div class="card blue-grey lighten-5">
             <h2 class="coral_red center-align"> {{username}}'s Profile</h2>
             {% for workouts in workouts %}
-            <table class = "highlight centered"> 
+            <table class = "highlight centered responsive-table"> 
                 <thead>
                     <tr>
                         <th>Date</th>
@@ -17,9 +17,11 @@
                         <th>Exercise 5</th>
                         <th>Interval</th>
                         <th>Comments</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
+                     {% if session.user|lower == workouts.user|lower %}
                     <tr>
                         <td>{{ workouts.date }}</td>
                         <td>{{ workouts.exercise_1 }}</td>
@@ -29,9 +31,19 @@
                         <td>{{ workouts.exercise_5 }}</td>
                         <td>{{ workouts.interval }}</td>
                         <td>{{ workouts.comment }}</td>
+                        <td>
+                        {% if workouts.status == "on" %}
+                        <i class="far fa-check-circle green-text tooltipped" data-position="bottom" data-tooltip="Workout Completed"></i>
+                        {% elif workouts.status == "off" %}
+                        <i class="far fa-times-circle red-text tooltipped" data-position="bottom" data-tooltip="Workout Not Completed"></i>
+                        {% endif %}
+                        </td>
                         <td>  <a href="{{ url_for('edit_workout', workouts_id=workouts._id)}}" class="waves-effect waves-light coral_red charcole-grey btn"><i  class="fas fa-edit tooltipped" data-position="bottom" data-tooltip="Edit Workout"></i></a> </td>
-                        <td>  <i class="btn-small coral_red charcole-grey fas fa-trash-alt tooltipped" data-position="bottom" data-tooltip="Delete Workout"></i></td>
+                        <td>  
+                        <a href="{{ url_for('delete_workout', workouts_id=workouts._id)}}"class="waves-effect waves-light coral_red charcole-grey btn"><i class="fas fa-trash-alt tooltipped" data-position="bottom" data-tooltip="Delete Workout"></i></a> 
+                        </td>
                     </tr>
+                     {% endif %}
                 </tbody>
             </table>
 

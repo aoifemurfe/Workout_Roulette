@@ -105,6 +105,7 @@ def logout():
 @app.route("/create_workout", methods=["GET", "POST"])
 def create_workout():
     if request.method == "POST":
+        status = "on" if request.form.get("status") else "off"
         logworkout = {
             "user": session["user"],
             "date": request.form.get("date"),
@@ -114,7 +115,8 @@ def create_workout():
             "exercise_4": request.form.get("exercise_4"),
             "exercise_5": request.form.get("exercise_5"),
             "interval": request.form.get("interval"),
-            "comment": request.form.get("comment")
+            "comment": request.form.get("comment"),
+            "status": status
         }
         mongo.db.workouts.insert_one(logworkout)
         flash("Workout Added Successfully")
@@ -125,6 +127,7 @@ def create_workout():
 @app.route("/edit_workout/<workouts_id>",methods=["GET", "POST"])
 def edit_workout(workouts_id):
     if request.method == "POST":
+        status = "on" if request.form.get("status") else "off"
         updateworkout = {
             "user": session["user"],
             "date": request.form.get("date"),
@@ -134,7 +137,8 @@ def edit_workout(workouts_id):
             "exercise_4": request.form.get("exercise_4"),
             "exercise_5": request.form.get("exercise_5"),
             "interval": request.form.get("interval"),
-            "comment": request.form.get("comment")
+            "comment": request.form.get("comment"),
+            "status": status
         }
         mongo.db.workouts.update({"_id": ObjectId(workouts_id)}, updateworkout)
         flash("Workout Updated Successfully")
@@ -142,6 +146,12 @@ def edit_workout(workouts_id):
     workouts = mongo.db.workouts.find_one({"_id": ObjectId(workouts_id)})
     return render_template("edit_workout.html", workouts=workouts)
 
+
+@app.route("/delete_workout/<workouts_id>")
+def delete_workout(workouts_id):
+    mongo.db.workouts.remove({"_id": ObjectId(workouts_id)})
+    flash("Workout Removed Successfully")
+    return redirect(url_for('profile', username=session['user']))
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
