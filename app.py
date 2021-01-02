@@ -4,9 +4,15 @@ from flask import (
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from werkzeug.security import generate_password_hash, check_password_hash 
+from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
+
+# create workout form #
+
+import datetime
+x = datetime.datetime.now()
+datenow = x.strftime("%Y,-,%m,-,%d")
 
 
 app = Flask(__name__)
@@ -24,7 +30,6 @@ mongo = PyMongo(app)
 @app.route("/go_home")
 def go_home():
     return render_template("home.html")
-
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -79,19 +84,20 @@ def login():
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
-    #get the username in session
+    # get the username in session
     username = mongo.db.users.find_one(
-        {"username":session["user"]})["username"]
+        {"username": session["user"]})["username"]
     workouts = mongo.db.workouts.find()
     if session["user"]:
-        return render_template("profile.html", username=username, workouts=workouts)
+        return render_template("profile.html", 
+        username=username, workouts=workouts)
     return redirect(url_for("login"))
 
 
 @app.route("/logout")
 def logout():
-    #remove user cookie
-    flash ("You have been logged out")
+    # remove user cookie
+    flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("login"))
 
@@ -115,13 +121,13 @@ def create_workout():
     return render_template("create_workout.html")
 
 
+@app.route("/edit_workout/<workouts_id>",methods=["GET", "POST"])
+def edit_workout(workouts_id):
+    workouts = mongo.db.workouts.find_one({"_id": ObjectId(workouts_id)})
+    return render_template("edit_workout.html", workouts=workouts)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
             debug=True)
-
-### create workout from ###
-
-import datetime
-x = datetime.datetime.now()
-datenow = x.strftime("%Y,-,%m,-,%d")
