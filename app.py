@@ -21,9 +21,10 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
-@app.route("/create_workout")
-def create_workout():
-    return render_template("create_workout.html")
+@app.route("/go_home")
+def go_home():
+    return render_template("home.html")
+
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -81,13 +82,36 @@ def profile(username):
     #get the username in session
     username = mongo.db.users.find_one(
         {"username":session["user"]})["username"]
-    return render_template("profile.html", username=username)
-
-
-@app.route("/get_workouts", methods=["GET", "POST"])
-def get_workouts():
     workouts = mongo.db.workouts.find()
-    return render_template("profile.html", workouts=workouts)
+    if session["user"]:
+        return render_template("profile.html", username=username, workouts=workouts)
+    return redirect(url_for("login"))
+
+
+@app.route("/logout")
+def logout():
+    #remove user cookie
+    flash ("You have been logged out")
+    session.pop("user")
+    return redirect(url_for("login"))
+
+
+@app.route("/create_workout", methods=["GET", "POST"])
+def create_workout():
+    if request.method == "POST":
+        logworkout = {
+            "date": request.form.get("date"),
+            "exercise_1": request.form.get("exercise_1"),
+            "exercise_2": request.form.get("exercise_2"),
+            "exercise_3": request.form.get("exercise_3"),
+            "exercise_4": request.form.get("exercise_4"),
+            "exercise_5": request.form.get("exercise_5"),
+            "comment": request.form.get("comment")
+        }
+        mongo.db.workouts.insert_one(logworkout)
+        flash("Workout Added Successfully")
+        return redirect(url_for('profile', username=session['user']))
+    return render_template("create_workout.html")
 
 
 if __name__ == "__main__":
@@ -95,3 +119,8 @@ if __name__ == "__main__":
             port=int(os.environ.get("PORT")),
             debug=True)
 
+### create workout from ###
+
+import datetime
+x = datetime.datetime.now()
+datenow = x.strftime("%Y,-,%m,-,%d")

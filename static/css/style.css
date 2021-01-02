@@ -28,3 +28,13 @@
 .dark_red {
 color: #c92e00;
 }
+
+
+.toprow {
+    height: 100px;
+    position: relative;
+}
+
+.removemargin {
+    margin-bottom: 0!important;
+}
