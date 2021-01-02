@@ -2,15 +2,6 @@
 
 {% block content %}
 <div class="row"><h2 class="coral_red center-align">Edit Workout</h2></div>
-<!---------Buttons ------------>
-<div class="row">
-    <div class="col s8 offset-s2">
-        <button class="btn-large waves-effect waves-light charcole-grey center-align" type="submit" form="edit_workout">Update Workout
-        </button>
-        <button class="btn-large waves-effect waves-light charcole-grey center-align" type="reset" form="edit_workout">Start Again
-        </button>
-    </div>
-</div>
 
 <div class="row">
     <div class="col s8 offset-s2">
@@ -20,52 +11,52 @@
                 <div class="row removemargin">
                     <div class="input-field">
                         <label class="active" for="datetoday">Date</label>
-                        <input value="" id="datetoday" name="date" type="date"class="validate" required>
+                        <input value="{{workouts.date}}" id="datetoday" name="date" type="date"class="validate" required>
                     </div>
                 </div>
                 <!---------Exercise One ------------>
                 <div class="row removemargin">
                     <div class="input-field">
                         <label class="active" for="exercise_1">Exercise 1</label>
-                        <input value="" id="exercise_1" name="exercise_1" type="text"class="validate autocomplete" required>
+                        <input value="{{workouts.exercise_1}}" id="exercise_1" name="exercise_1" type="text"class="validate autocomplete" required>
                     </div>
                 </div>
                 <!---------Exercise Two ------------>
                 <div class="row removemargin">
                     <div class="input-field">
                         <label class="active" for="exercise_2">Exercise 2</label>
-                        <input value="" id="exercise_2" name="exercise_2" type="text"class="validate autocomplete" required>
+                        <input value="{{workouts.exercise_2}}" id="exercise_2" name="exercise_2" type="text"class="validate autocomplete" required>
                     </div>
                 </div>
                 <!---------Exercise Three ------------>
                 <div class="row removemargin">
                     <div class="input-field">
                         <label class="active" for="exercise_3">Exercise 3</label>
-                        <input value="" id="exercise_3" name="exercise_3" type="text"class="validate autocomplete" required>
+                        <input value="{{workouts.exercise_3}}" id="exercise_3" name="exercise_3" type="text"class="validate autocomplete" required>
                     </div>
                 </div>
                 <!---------Exercise Four ------------>
                 <div class="row removemargin">
                     <div class="input-field">
                         <label class="active" for="exercise_4">Exercise 4</label>
-                        <input value="" id="exercise_4" name="exercise_4" type="text"class="validate autocomplete" required>
+                        <input value="{{workouts.exercise_4}}" id="exercise_4" name="exercise_4" type="text"class="validate autocomplete" required>
                     </div>
                 </div>
                 <!---------Exercise Five ------------>
                 <div class="row removemargin">
                     <div class="input-field">
                         <label class="active" for="exercise_5">Exercise 5</label>
-                        <input value="" id="exercise_5" name="exercise_5" type="text"class="validate autocomplete" required>
+                        <input value="{{workouts.exercise_5}}" id="exercise_5" name="exercise_5" type="text"class="validate autocomplete" required>
                     </div>
                 </div>
                 <!---------Interval ------------>
             
                     <div class="input-field" id="interval" name="interval">
                         <select id="interval" name="interval" class="validate" required>
-                            <option value="" disabled selected>Choose your option</option>
-                            <option value="1">Easy - 30secs on, 30secs off</option>
-                            <option value="2">Medium - 45secs on, 15secs off</option>
-                            <option value="3">Hard - 60secs on, 0 secs off</option>
+                            <option value="{{workouts.interval}}" disabled selected>{{workouts.interval}}</option>
+                            <option value="Easy - 30secs on, 30secs off">Easy - 30secs on, 30secs off</option>
+                            <option value="Medium - 45secs on, 15secs off">Medium - 45secs on, 15secs off</option>
+                            <option value="Medium - 45secs on, 15secs off">Hard - 60secs on, 0 secs off</option>
                         </select>
                         <label for="interval">Select interval</label>
                     </div>
@@ -73,11 +64,19 @@
                 <div class="row removemargin">
                     <div class="input-field">
                         <label class="active" for="comment">Comments</label>
-                        <input value="" id="comment" name="comment" type="text"class="validate" required>
+                        <input value="{{workouts.comment}}" id="comment" name="comment" type="text"class="validate" required>
                     </div>
                 </div>
             </form>
         </div>
+    </div>
+</div>
+<!---------Buttons ------------>
+<div class="row">
+    <div class="col s7 offset-s3">
+        <button class="btn-large waves-effect waves-light charcole-grey center-align" type="submit" form="edit_workout">Update Workout
+        </button>
+        <a href="{{ url_for('edit_workout', workouts_id=workouts._id)}}" class="btn-large waves-effect waves-light charcole-grey center-align">Cancel Changes</a>
     </div>
 </div>
 {% endblock %}

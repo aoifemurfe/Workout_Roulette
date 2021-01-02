@@ -113,6 +113,7 @@ def create_workout():
             "exercise_3": request.form.get("exercise_3"),
             "exercise_4": request.form.get("exercise_4"),
             "exercise_5": request.form.get("exercise_5"),
+            "interval": request.form.get("interval"),
             "comment": request.form.get("comment")
         }
         mongo.db.workouts.insert_one(logworkout)
@@ -123,6 +124,21 @@ def create_workout():
 
 @app.route("/edit_workout/<workouts_id>",methods=["GET", "POST"])
 def edit_workout(workouts_id):
+    if request.method == "POST":
+        updateworkout = {
+            "user": session["user"],
+            "date": request.form.get("date"),
+            "exercise_1": request.form.get("exercise_1"),
+            "exercise_2": request.form.get("exercise_2"),
+            "exercise_3": request.form.get("exercise_3"),
+            "exercise_4": request.form.get("exercise_4"),
+            "exercise_5": request.form.get("exercise_5"),
+            "interval": request.form.get("interval"),
+            "comment": request.form.get("comment")
+        }
+        mongo.db.workouts.update({"_id": ObjectId(workouts_id)}, updateworkout)
+        flash("Workout Updated Successfully")
+        return redirect(url_for('profile', username=session['user']))
     workouts = mongo.db.workouts.find_one({"_id": ObjectId(workouts_id)})
     return render_template("edit_workout.html", workouts=workouts)
 
