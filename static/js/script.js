@@ -11,6 +11,27 @@ $(document).ready(function(){
 
 document.getElementById('datetoday').valueAsDate = new Date();
 
+$(document).ready(function(){
+  $('input.autocomplete').autocomplete({
+    data: {
+      "Burpees" : null, 
+      "Push Ups": null, 
+      "Air Squats": null, 
+      "Lunges": null,
+      "Shuttle Runs": null, 
+      "Jumping Jacks": null, 
+      "Plank": null, 
+      "Sit Ups": null,
+      "Tricep Dips": null, 
+      "Mountain Climbers": null, 
+      "Bear Crawl": null, 
+      "Glute Bridges": null
+    },
+  });
+});
+
+//    Roulette Wheel 
+
 var colors = ["#B8D430", "#3AB745", "#029990", "#3501CB",
              "#2E2C75", "#673A7E", "#CC0071", "#F80120",
              "#F35B20", "#FB9A00", "#FFCC00", "#FEF200"];

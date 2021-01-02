@@ -100,6 +100,7 @@ def logout():
 def create_workout():
     if request.method == "POST":
         logworkout = {
+            "user": session["user"],
             "date": request.form.get("date"),
             "exercise_1": request.form.get("exercise_1"),
             "exercise_2": request.form.get("exercise_2"),
