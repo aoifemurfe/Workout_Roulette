@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+
 {% block content %}
 <div class="row removemargin">
     <div class="col s12">
@@ -27,7 +28,7 @@
                     <tr>
                     {% for workouts in workouts %}
                         {% if session.user|lower == workouts.user|lower %}
-                        <td>{{ workouts.date }}</td>
+                        <td>{{ workouts.date}}</td>
                         <td>{{ workouts.exercise_1 }}</td>
                         <td>{{ workouts.exercise_2 }}</td>
                         <td>{{ workouts.exercise_3 }}</td>

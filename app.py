@@ -7,12 +7,8 @@ from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
-
-# create workout form #
-
-import datetime
-x = datetime.datetime.now()
-datenow = x.strftime("%Y,-,%m,-,%d")
+from datetime import datetime
+from pymongo import MongoClient
 
 
 app = Flask(__name__)
@@ -21,7 +17,6 @@ app = Flask(__name__)
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
-
 
 mongo = PyMongo(app)
 
@@ -94,6 +89,7 @@ def view_workouts(username):
     return redirect(url_for("login"))
 
 
+
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     # get the username in session
@@ -118,9 +114,15 @@ def logout():
 def create_workout():
     if request.method == "POST":
         status = "on" if request.form.get("status") else "off"
+        if request.form.get("interval") == "Medium - 45secs on, 15secs off": 
+            timing = 45 
+        elif request.form.get("interval") == "Hard - 60secs on, 0 secs off":
+            timing = 60
+        else:
+            timing = 30
         logworkout = {
             "user": session["user"],
-            "date": request.form.get("date"),
+            "date": request.form.get("date.strptime()"),
             "exercise_1": request.form.get("exercise_1"),
             "exercise_2": request.form.get("exercise_2"),
             "exercise_3": request.form.get("exercise_3"),
@@ -128,7 +130,8 @@ def create_workout():
             "exercise_5": request.form.get("exercise_5"),
             "interval": request.form.get("interval"),
             "comment": request.form.get("comment"),
-            "status": status
+            "status": status,
+            "timing": timing    
         }
         mongo.db.workouts.insert_one(logworkout)
         flash("Workout Added Successfully")
@@ -140,6 +143,12 @@ def create_workout():
 def edit_workout(workouts_id):
     if request.method == "POST":
         status = "on" if request.form.get("status") else "off"
+        if request.form.get("interval") == "Medium - 45secs on, 15secs off": 
+            timing = 45 
+        elif request.form.get("interval") == "Hard - 60secs on, 0 secs off":
+            timing = 60
+        else:
+            timing = 30
         updateworkout = {
             "user": session["user"],
             "date": request.form.get("date"),
@@ -150,7 +159,8 @@ def edit_workout(workouts_id):
             "exercise_5": request.form.get("exercise_5"),
             "interval": request.form.get("interval"),
             "comment": request.form.get("comment"),
-            "status": status
+            "status": status,
+            "timing": timing
             
         }
         mongo.db.workouts.update({"_id": ObjectId(workouts_id)}, updateworkout)

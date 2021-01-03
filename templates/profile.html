@@ -5,6 +5,14 @@
     <div class="col s12">
         <div class="card blue-grey lighten-5">
             <h2 class="coral_red center-align"> {{username}}'s Profile</h2>
+            <span>
+                {% for workouts in workouts %}
+                    {% if session.user|lower == workouts.user|lower %}
+                        {{ workouts.timing }}
+                    {% endif %} 
+                {% endfor %}
+
+            </span>
             
         </div>
     </div>
