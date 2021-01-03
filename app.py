@@ -52,7 +52,7 @@ def register():
         # put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
-        return redirect(url_for("profile", username=session["user"]))
+        return redirect(url_for("view_workouts", username=session["user"]))
     return render_template("register.html")
 
 
@@ -70,7 +70,7 @@ def login():
                     flash("Welcome, {}".format(
                         request.form.get("username")))
                     return redirect(url_for(
-                        "profile", username=session["user"]))
+                        "view_workouts", username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -82,6 +82,18 @@ def login():
     return render_template("login.html")
 
 
+@app.route("/view_workouts/<username>", methods=["GET", "POST"])
+def view_workouts(username):
+    # get the username in session
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    workouts = mongo.db.workouts.find()
+    if session["user"]:
+        return render_template("view_workouts.html", 
+        username=username, workouts=workouts)
+    return redirect(url_for("login"))
+
+
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     # get the username in session
@@ -91,7 +103,7 @@ def profile(username):
     if session["user"]:
         return render_template("profile.html", 
         username=username, workouts=workouts)
-    return redirect(url_for("login"))
+    return redirect(url_for("profile"))
 
 
 @app.route("/logout")
@@ -120,7 +132,7 @@ def create_workout():
         }
         mongo.db.workouts.insert_one(logworkout)
         flash("Workout Added Successfully")
-        return redirect(url_for('profile', username=session['user']))
+        return redirect(url_for('view_workouts', username=session['user']))
     return render_template("create_workout.html")
 
 
@@ -139,10 +151,11 @@ def edit_workout(workouts_id):
             "interval": request.form.get("interval"),
             "comment": request.form.get("comment"),
             "status": status
+            
         }
         mongo.db.workouts.update({"_id": ObjectId(workouts_id)}, updateworkout)
         flash("Workout Updated Successfully")
-        return redirect(url_for('profile', username=session['user']))
+        return redirect(url_for('view_workouts', username=session['user']))
     workouts = mongo.db.workouts.find_one({"_id": ObjectId(workouts_id)})
     return render_template("edit_workout.html", workouts=workouts)
 
@@ -151,7 +164,8 @@ def edit_workout(workouts_id):
 def delete_workout(workouts_id):
     mongo.db.workouts.remove({"_id": ObjectId(workouts_id)})
     flash("Workout Removed Successfully")
-    return redirect(url_for('profile', username=session['user']))
+    return redirect(url_for('view_workouts', username=session['user']))
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),

@@ -41,3 +41,7 @@ color: #c92e00;
 .removemargin {
     margin-bottom: 0!important;
 }
+
+.larger-font-size {
+    font-size: 200%;
+}

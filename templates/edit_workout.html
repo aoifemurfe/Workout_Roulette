@@ -70,9 +70,14 @@
                  <!-- Switch -->
                 <div class="row removemargin">
                     <div class="switch">
+                        
                         <label>
                             Not Completed
+                            {% if workouts.status == "on" %}
+                            <input type="checkbox" value="on" name="status" id ="status"  checked>
+                            {% else %}
                             <input type="checkbox" value="" name="status" id ="status">
+                            {% endif %}
                             <span class="lever"></span>
                             Completed
                         </label>
