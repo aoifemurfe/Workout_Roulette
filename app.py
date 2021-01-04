@@ -95,7 +95,7 @@ def search(username):
         {"username": session["user"]})["username"]
     query = request.form.get("search")
     workouts = list(mongo.db.workouts.find({"$text": {"$search": query}}))
-    return render_template("view_workouts.html", workouts=workouts, username=username,)
+    return render_template("view_workouts.html", workouts=workouts, username=username)
 
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
