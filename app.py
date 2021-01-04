@@ -106,13 +106,10 @@ def profile(username):
     workouts = mongo.db.workouts.find()
     total = mongo.db.workouts.aggregate([
                     {"$match": {"status": "on"}},
-                    {"$group": {"_id": 0, "user": { "$first": "$user" }, "full": {"$sum": "$timing"}}}
+                    {"$group": {"_id": 0, "user": { "$first": "$user" }, "minutes": {"$sum": "$timing"}}}
                    ])
-    exercisetotal_at30 = mongo.db.workouts.distinct( "erercise_1", { "timing": "30" })  
-    if session["user"]:
-        return render_template("profile.html", 
+    return render_template("profile.html", 
         username=username, workouts=workouts, total=total)
-    return redirect(url_for("profile"))
 
 
 @app.route("/logout")

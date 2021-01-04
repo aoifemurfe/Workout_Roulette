@@ -3,20 +3,27 @@
 {% block content %}
 <div class="row removemargin">
     <div class="col s12">
-        <div class="card blue-grey lighten-5">
-            <h2 class="coral_red center-align"> {{username}}'s Profile</h2>
-            <span>
-                <p class = "text-blue"> You have worked out for  
-                {% for total in total %}
+        <h2 class="coral_red center-align"> {{username}}'s Profile</h2>
+        <ul class="collection">
+            <li class="collection-item avatar">
+                <i class="fas fa-dumbbell circle"></i>
+
+                <span class="title">You have workedout for</span>
+                <p>
+                    {% for total in total %}
                     {% if session.user|lower == total.user|lower %}
-                        {{ total.full*5 }}
-                    {% endif %} 
-                {% endfor %}
-                minutes
+                    {{ total.minutes }} minutes
+                    {% endif %}
+                    {% endfor %}
                 </p>
-            </span>
-            
-        </div>
+            </li>
+            <li class="collection-item avatar">
+                <i class="fas fa-dumbbell circle"></i>
+                <span class="title">You have completed</span>
+                <p>x sets of y exercise
+                </p>
+            </li>
+        </ul>
     </div>
 </div>
 {% endblock %}
