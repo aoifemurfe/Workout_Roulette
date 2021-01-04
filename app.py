@@ -8,7 +8,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
 from datetime import datetime
-from pymongo import MongoClient
 
 
 app = Flask(__name__)
@@ -100,6 +99,7 @@ def profile(username):
                     {"$match": {"status": "on"}},
                     {"$group": {"_id": 0, "user": { "$first": "$user" }, "full": {"$sum": "$timing"}}}
                    ])
+    exercisetotal_at30 = mongo.db.workouts.distinct( "erercise_1", { "timing": "30" })  
     if session["user"]:
         return render_template("profile.html", 
         username=username, workouts=workouts, total=total)
@@ -126,7 +126,7 @@ def create_workout():
             timing = 30
         logworkout = {
             "user": session["user"],
-            "date": request.form.get("date.strptime()"),
+            "date": request.form.get("date"),
             "exercise_1": request.form.get("exercise_1"),
             "exercise_2": request.form.get("exercise_2"),
             "exercise_3": request.form.get("exercise_3"),
@@ -135,7 +135,7 @@ def create_workout():
             "interval": request.form.get("interval"),
             "comment": request.form.get("comment"),
             "status": status,
-            "timing": timing    
+            "timing": timing
         }
         mongo.db.workouts.insert_one(logworkout)
         flash("Workout Added Successfully")
