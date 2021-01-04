@@ -88,6 +88,15 @@ def view_workouts(username):
     return redirect(url_for("login"))
 
 
+@app.route("/search/<username>", methods=["GET", "POST"])
+def search(username):
+    # get the username in session
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    query = request.form.get("search")
+    workouts = list(mongo.db.workouts.find({"$text": {"$search": query}}))
+    return render_template("view_workouts.html", workouts=workouts, username=username,)
+
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
