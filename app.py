@@ -96,9 +96,13 @@ def profile(username):
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
     workouts = mongo.db.workouts.find()
+    total = mongo.db.workouts.aggregate([
+                    {"$match": {"status": "on"}},
+                    {"$group": {"_id": 0, "user": { "$first": "$user" }, "full": {"$sum": "$timing"}}}
+                   ])
     if session["user"]:
         return render_template("profile.html", 
-        username=username, workouts=workouts)
+        username=username, workouts=workouts, total=total)
     return redirect(url_for("profile"))
 
 

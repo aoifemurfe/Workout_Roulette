@@ -6,12 +6,14 @@
         <div class="card blue-grey lighten-5">
             <h2 class="coral_red center-align"> {{username}}'s Profile</h2>
             <span>
-                {% for workouts in workouts %}
-                    {% if session.user|lower == workouts.user|lower %}
-                        {{ workouts.timing }}
+                <p class = "text-blue"> You have worked out for  
+                {% for total in total %}
+                    {% if session.user|lower == total.user|lower %}
+                        {{ total.full*5 }}
                     {% endif %} 
                 {% endfor %}
-
+                minutes
+                </p>
             </span>
             
         </div>
