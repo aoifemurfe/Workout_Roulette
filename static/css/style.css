@@ -55,3 +55,42 @@ color: #c92e00;
     
     position: relative;
 }
+
+
+.center-content {
+        
+        overflow: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+}
+
+/* to show a smaller wheel on mobile devices*/
+
+ .mobileshow {display: none;} 
+
+@media only screen and (max-width : 1300px)
+{ 
+    .mobileshow {
+     
+        overflow: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.desktop {display: none;} 
+
+/* to show a smaller wheel on desktop*/
+@media screen and (min-width: 1300px)
+   { 
+    .desktop {
+        overflow: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+

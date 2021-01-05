@@ -2,29 +2,34 @@
 
 {% block content %}
 <div class="row"></div>
-<!---------Buttons ------------>
-<div class="row">
-    <div class="col s8 offset-s2">
-        <button class="btn-large waves-effect waves-light charcole-grey center-align" onclick="spin();">Spin
-        </button>
-        <button class="btn-large waves-effect waves-light charcole-grey center-align" type="submit"
-            form="add_workout">Submit Workout
-        </button>
-        <button class="btn-large waves-effect waves-light charcole-grey center-align" type="reset"
-            form="add_workout">Start Again
-        </button>
-    </div>
-</div>
+<!---------Spin Button & Wheel ------------>
+
 
 <div class="row">
-    <div class="col s8">
+   
+    <div class="col s12 m6">
+         <h3 class="center-align">Spin the Wheel</h3>
+        <div class="center-align desktop">
+            <canvas class="center-align" id="canvas" width="500" height="500"></canvas>
+        </div>
 
-        <div class="center-align">
-            <canvas id="canvas" width="500" height="500"></canvas>
+        <div class="center-align mobileshow ">
+            <canvas class="center-align" id="canvasmob" width="500" height="500"></canvas>
+        </div>
+
+        <div class="row center-content">
+            
+                <button class="btn-large waves-effect waves-light charcole-grey center-align" onclick="spin();">Spin
+                </button>
+
+           
         </div>
 
     </div>
-    <div class="col s4">
+
+    <!---------Form ------------>
+    <div class="col s12 m6">
+        <h3 class="center-align">And Log Your Workout!</h3>
         <div class="row">
             <form class="col s12" method="POST" id="add_workout" action="{{ url_for('create_workout') }}">
                 <!---------date field ------------>
@@ -96,11 +101,24 @@
                     <div class="switch">
                         <label>
                             Not Completed
-                            <input type="checkbox" value="on" name="status" id ="status">
+                            <input type="checkbox" value="on" name="status" id="status">
                             <span class="lever"></span>
                             Completed
                         </label>
                     </div>
+                </div>
+                <!--------- Buttons ------------>
+                 <div class="row center-content"></div>
+                <div class="row center-content">
+                   
+
+                    <button class="btn-large waves-effect waves-light charcole-grey center-align" type="submit"
+                        form="add_workout">Submit Workout
+                    </button>
+                    <button class="btn-large waves-effect waves-light charcole-grey center-align" type="reset"
+                        form="add_workout">Start Again
+                    </button>
+
                 </div>
             </form>
         </div>
