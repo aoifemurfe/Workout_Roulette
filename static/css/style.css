@@ -21,7 +21,7 @@
 }
 
 .coral_red {
-    color: #ff5757;
+    color: #ff5757!important;
 }
 
 .off_white{
@@ -44,4 +44,14 @@ color: #c92e00;
 
 .larger-font-size {
     font-size: 200%;
+}
+
+.homepage_icons {
+    font-size: 900%;
+    height: 100%;
+    width: 100%;
+    margin: 5%;
+    text-align: center;
+    
+    position: relative;
 }

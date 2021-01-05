@@ -2,4 +2,66 @@
 
 {% block content %}
 
+<div class="row">
+    <div class="col s12 m12">
+        <div class="card-panel deep-orange accent-4">
+            <h3 class="white-text center-align">Welcome to Workout Roulette</h3>
+            <p class="white-text center-align">Sign up and start creating workouts and tracking progress!
+            </p>
+        </div>
+    </div>
+</div>
+
+<!----Card 1 Create an account --->
+<div class="row">
+    <div class="col s12 m4">
+        <div class="card medium">
+            <div class="card-image">
+                <i class="fas fa-user-alt grey-text text-darken-4 homepage_icons"></i>
+            </div>
+            <div class="card-content">
+                <span class="card-title coral_red">1. Register</span>
+                <p>Register for an account to start creating workouts. </p>
+            </div>
+            <div class="card-action coral_red">
+                {% if session.user %}
+                <a href="{{ url_for('profile', username=session['user']) }}">View Profile</a>
+                {% else %}
+                <a href="{{ url_for('register') }}">Register</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+    <!----Card 2 Roulette Wheel--->
+
+    <div class="col s12 m4">
+        <div class="card medium">
+            <div class="card-image">
+                <i class="fas fa-sync-alt grey-text text-darken-4 homepage_icons"></i>
+            </div>
+            <div class="card-content">
+                <span class="card-title coral_red">2. Spin The Wheel</span>
+                <p>Randomly generate HIIT workouts by spinning the wheel. Select your intervals and log workouts to your database. </p>
+            </div>
+        </div>
+    </div>
+
+
+    <!----Card 3 View Stats --->
+
+    <div class="col s12 m4">
+        <div class="card medium">
+            <div class="card-image">
+                <i class="fas fa-running grey-text text-darken-4 homepage_icons"></i>
+            </div>
+            <div class="card-content">
+                <span class="card-title coral_red">3. Work!</span>
+                <p>Complete the HIIT workouts created and track them in your database. </p>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
