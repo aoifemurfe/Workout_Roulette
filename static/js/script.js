@@ -9,7 +9,10 @@ $(document).ready(function(){
   $('.tooltipped').tooltip();
 });
 
-document.getElementById('datetoday').valueAsDate = new Date();
+try {
+    document.getElementById('datetoday').valueAsDate = new Date();
+} catch {}
+
 
 // add workout form 
 

@@ -106,10 +106,59 @@ def profile(username):
     workouts = mongo.db.workouts.find()
     total = mongo.db.workouts.aggregate([
                     {"$match": {"status": "on"}},
-                    {"$group": {"_id": 0, "user": { "$first": "$user" }, "minutes": {"$sum": "$timing"}}}
+                    {"$group": {"_id": "$user" , "minutes": {"$sum": "$timing"}}}
                    ])
+    burpees = mongo.db.workouts.aggregate([
+                    {"$match": {"status": "on","$text": {"$search": "Burpees"}}},
+                    {"$group": {"_id": "$user" , "count": { "$sum": "$count" }}}
+                   ])
+    push_ups = mongo.db.workouts.aggregate([
+                    {"$match": {"status": "on","$text": {"$search": "Push Ups"}}},
+                    {"$group": {"_id": "$user" , "count": { "$sum": "$count" }}}
+                   ])
+    air_squats = mongo.db.workouts.aggregate([
+                    {"$match": {"status": "on","$text": {"$search": "Air Squats"}}},
+                    {"$group": {"_id": "$user" , "count": { "$sum": "$count" }}}
+                   ])
+    lunges = mongo.db.workouts.aggregate([
+                    {"$match": {"status": "on","$text": {"$search": "Lunges"}}},
+                    {"$group": {"_id": "$user" , "count": { "$sum": "$count" }}}
+                   ])
+    shuttle_runs = mongo.db.workouts.aggregate([
+                    {"$match": {"status": "on","$text": {"$search": "Shuttle Runs"}}},
+                    {"$group": {"_id": "$user" , "count": { "$sum": "$count" }}}
+                   ])  
+    jumping_jacks = mongo.db.workouts.aggregate([
+                    {"$match": {"status": "on","$text": {"$search": "Jumping Jacks"}}},
+                    {"$group": {"_id": "$user" , "count": { "$sum": "$count" }}}
+                   ])    
+    plank = mongo.db.workouts.aggregate([
+                    {"$match": {"status": "on","$text": {"$search": "Plank"}}},
+                    {"$group": {"_id": "$user" , "count": { "$sum": "$count" }}}
+                   ])       
+    sit_ups = mongo.db.workouts.aggregate([
+                    {"$match": {"status": "on","$text": {"$search": "Plank"}}},
+                    {"$group": {"_id": "$user" , "count": { "$sum": "$count" }}}
+                   ])  
+    tricep_dips = mongo.db.workouts.aggregate([
+                    {"$match": {"status": "on","$text": {"$search": "Tricep Dips"}}},
+                    {"$group": {"_id": "$user" , "count": { "$sum": "$count" }}}
+                   ])       
+    mountain_climbers = mongo.db.workouts.aggregate([
+                    {"$match": {"status": "on","$text": {"$search": "Mountain Climbers"}}},
+                    {"$group": {"_id": "$user" , "count": { "$sum": "$count" }}}
+                   ])      
+    bear_crawl = mongo.db.workouts.aggregate([
+                    {"$match": {"status": "on","$text": {"$search": "Bear Crawl"}}},
+                    {"$group": {"_id": "$user" , "count": { "$sum": "$count" }}}
+                   ]) 
+    glute_bridges = mongo.db.workouts.aggregate([
+                    {"$match": {"status": "on","$text": {"$search": "Glute Bridges"}}},
+                    {"$group": {"_id": "$user" , "count": { "$sum": "$count" }}}
+                   ]) 
+
     return render_template("profile.html", 
-        username=username, workouts=workouts, total=total)
+        username=username, workouts=workouts, total=total, burpees=burpees,push_ups=push_ups,air_squats=air_squats, lunges=lunges, shuttle_runs=shuttle_runs, jumping_jacks=jumping_jacks, plank=plank, sit_ups=sit_ups, tricep_dips=tricep_dips, mountain_climbers=mountain_climbers, bear_crawl=bear_crawl, glute_bridges=glute_bridges)
 
 
 @app.route("/logout")
@@ -141,7 +190,8 @@ def create_workout():
             "interval": request.form.get("interval"),
             "comment": request.form.get("comment"),
             "status": status,
-            "timing": timing
+            "timing": timing,
+            "count": 1
         }
         mongo.db.workouts.insert_one(logworkout)
         flash("Workout Added Successfully")
@@ -170,7 +220,8 @@ def edit_workout(workouts_id):
             "interval": request.form.get("interval"),
             "comment": request.form.get("comment"),
             "status": status,
-            "timing": timing
+            "timing": timing,
+            "count": 1
             
         }
         mongo.db.workouts.update({"_id": ObjectId(workouts_id)}, updateworkout)
