@@ -31,12 +31,19 @@ The site logo was created on canva.com and forms the home button in the top left
 
 ### Wireframes
 Home Page Wireframe - [View](https://github.com/aoifemurfe/Workout_Roulette/blob/d1e4149ed5fc2e0e8eed40ea37b0de66b29d7072/static/images/homepage.png)
+
 Login Page - [View](https://github.com/aoifemurfe/Workout_Roulette/blob/d1e4149ed5fc2e0e8eed40ea37b0de66b29d7072/static/images/login_page.png)
+
 Register Page - [View](https://github.com/aoifemurfe/Workout_Roulette/blob/d1e4149ed5fc2e0e8eed40ea37b0de66b29d7072/static/images/register_page.png)
+
 Create Workout Page - [View](https://github.com/aoifemurfe/Workout_Roulette/blob/d1e4149ed5fc2e0e8eed40ea37b0de66b29d7072/static/images/create_workout.png)
+
 View Workouts Page - [View](https://github.com/aoifemurfe/Workout_Roulette/blob/d1e4149ed5fc2e0e8eed40ea37b0de66b29d7072/static/images/View%20Workouts.png)
+
 Profile Page - [View](https://github.com/aoifemurfe/Workout_Roulette/blob/d1e4149ed5fc2e0e8eed40ea37b0de66b29d7072/static/images/profile_page.png)
+
 Edit Workout Page - [View](https://github.com/aoifemurfe/Workout_Roulette/blob/d1e4149ed5fc2e0e8eed40ea37b0de66b29d7072/static/images/edit_workout.png)
+
 
 
 ### Features
@@ -100,13 +107,18 @@ The lighthouse report at https://web.dev/measure/ was used to assess the website
   4. To generate the search there is a large search button that generates results on the ma
 
 ### Returning Visitor Goals
-1. As a Returning Visitor, I want to perform different types of searches in different areas
+1. As a Returning Visitor, I want to be able to log back into my account.
+2. As a Returning Visitor, I want to be able to view previous workouts and create new workouts to log to the database.
         - Beside the search button is a clear results button that clears the map and allows the user to perform another search and if they wish to select               different inputs to the first search, they can do so.
 
 ### Frequent User Goals
-1. As a Frequent User, I want to find the essential services in the places that matter to them.
-    - The user would already be comfortable with the website layout and can easily select the parameters that they wish to search for on the map.
-    - Within the map the user can select the icons in the map results and find the names of the services.
+ 1. As a Frequent User, I want to look through previous workouts and edit or delete them.
+    - On the view workouts page there are buttons that allow workouts to be edited or deleted. The button have an icon and a small popup for the user to be able to undertrand their function. The edit button leads the user to an edit for with the existing data pre populated on the form, this allows the user to easily change whatever they want to change. Once edited the user submits the form and is returned to the view workouts page with the flash message "Workout Successfully updated".  
+ 2. As a Frequent User, I want to see some basic statistics about the workouts that I have completed. 
+    - Statistics are shown on the profile page and show the user some basic stats about how much time they have spent working out and how many sets of each exercise have been completed.
+ 3. As a Frequent User, I want to have the option to delete my profile  if I wish to.
+    - The profile page contains the option to delete the users profile by clicking the "Delete Profile" button. As this will delete all data, this generates a prompt to ask the user if they really want to delete their account. If the user clicks yes then all data is deleted and the user is logged out.
+
 
 ### Further Testing
 - The Website was tested on Google Chrome, Internet Explorer, Microsoft Edge and Safari browsers.
@@ -115,7 +127,13 @@ The lighthouse report at https://web.dev/measure/ was used to assess the website
 - Friends and family members were asked to review the site and documentation to point out any bugs and/or user experience issues.
 
 ### Known Bugs
-- Within the console log, there is  an error message of “Cannot read property 'geometry' of undefined” however this does not impact the functionality of the page nor can the user see any issues when looking at the page.
+- If a user selects the same exercise more than once in the same workout the count function will only count that exercise once and the profile page stats will be incorrect. 
+
+### Future Development
+- A future development would be to automatically populate the workout form from the wheel output ranther than having to manually input the exercise into the form. 
+- Further fututure development would provide more statistics on the profile page. 
+
+
 <<<<<<< HEAD
 
 
@@ -170,7 +188,7 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 ### Code
 
--   [Materialize](https://materializecss.com/about.html): Materialize Library used throughout the project mainly to make site responsive using the Materialize Grid System.
+-  [Materialize](https://materializecss.com/about.html): Materialize Library used throughout the project mainly to make site responsive using the Materialize Grid System.
 
 - [MongoDB](https://www.mongodb.com/cloud/atlas):  MongoDB was used to store all data recodred for each user and each users workouts logged. 
 
