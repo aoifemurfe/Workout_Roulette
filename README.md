@@ -1,7 +1,7 @@
 ## Website Details
 
 ### URL
- - The website url is xxxxxxxx
+ - The website url is https://workout-roulette.herokuapp.com/
  
 ### Purpose
 - The purpose of the website is to allow users create workouts and log them to their own database using login functionality. 
@@ -94,7 +94,7 @@ The lighthouse report at https://web.dev/measure/ was used to assess the website
 3. Best Practise 
 4. SEO
 
- - Lighthouse report - [Results](https://github.com/aoifemurfe/MyRadius/blob/master/assets/images/Lighthouse%20Report.pdf)
+ - Lighthouse report - [Results](https://github.com/aoifemurfe/Workout_Roulette/blob/master/static/images/Lighthouse%20Report.pdf)
  
 ## Testing User Stories from User Experience (UX) Section
 
