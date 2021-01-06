@@ -78,7 +78,7 @@ $(document).ready(function(){
     }
 
 
-//    Roulette Wheel 
+//    Roulette Wheel - code inspiration from https://dzone.com/articles/creating-roulette-wheel-using
 
 var colors = ["#B8D430", "#3AB745", "#029990", "#3501CB",
              "#2E2C75", "#673A7E", "#CC0071", "#F80120",
