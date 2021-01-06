@@ -156,6 +156,7 @@ The project was deployed wit Heroku following the instruction detailed here(http
 
 ## Content
 All content was written by the developer.
+The roulette wheel code was adapted from code created by this(https://dzone.com/articles/creating-roulette-wheel-using) website. 
 
 ## Media
 All Images were created by the developer.
