@@ -1,17 +1,26 @@
 
 
-
+//  to load the sidenav on mobile
 $(document).ready(function () {
     $(".sidenav").sidenav({edge: "right"});
 });
 
+//  to load the dialog boxes when you hover over the edi and delete buttons on the view workouts page
 $(document).ready(function(){
   $('.tooltipped').tooltip();
 });
 
+
+//  to get the date today for the create workout form
 try {
     document.getElementById('datetoday').valueAsDate = new Date();
 } catch {}
+
+
+// to load the modal for delete profile
+ $(document).ready(function(){
+    $('.modal').modal();
+  });
 
 
 // to auto populate the forms with the exercise options on the wheel

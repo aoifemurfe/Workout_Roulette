@@ -22,102 +22,123 @@
                 <span class="title">You have completed</span>
                 <p>
                     {% for burpees in burpees %}
-                        {% if session.user|lower == burpees._id|lower %}
-                            {{ burpees.count }} sets of burpees
-                       {% endif %}  
+                    {% if session.user|lower == burpees._id|lower %}
+                    {{ burpees.count }} sets of Burpees
+                    {% endif %}
                     {% endfor %}
                     <br>
-                    
+
                     {% for push_ups in push_ups %}
-                        {% if session.user|lower == push_ups._id|lower %}
-                            {{ push_ups.count }} sets of Push Ups
-                        {% endif %}
+                    {% if session.user|lower == push_ups._id|lower %}
+                    {{ push_ups.count }} sets of Push Ups
+                    {% endif %}
                     {% endfor %}
-                    
+
                     <br>
-                   
+
                     {% for air_squats in air_squats %}
-                         {% if session.user|lower == air_squats._id|lower %}
-                            {{ air_squats.count }} sets of Air Squats
-                        {% endif %}
+                    {% if session.user|lower == air_squats._id|lower %}
+                    {{ air_squats.count }} sets of Air Squats
+                    {% endif %}
                     {% endfor %}
-                    
+
                     <br>
-                    
+
                     {% for lunges in lunges %}
-                        {% if session.user|lower == lunges._id|lower %}
-                            {{ lunges.count }} sets of Lunges
-                        {% endif %}
+                    {% if session.user|lower == lunges._id|lower %}
+                    {{ lunges.count }} sets of Lunges
+                    {% endif %}
                     {% endfor %}
-                    
+
                     <br>
-                    
+
                     {% for shuttle_runs in shuttle_runs %}
-                        {% if session.user|lower == shuttle_runs._id|lower %}
-                            {{ shuttle_runs.count }} sets of Shuttle Runs
-                        {% endif %}
+                    {% if session.user|lower == shuttle_runs._id|lower %}
+                    {{ shuttle_runs.count }} sets of Shuttle Runs
+                    {% endif %}
                     {% endfor %}
-                    
+
                     <br>
-                    
+
                     {% for jumping_jacks in jumping_jacks %}
-                        {% if session.user|lower == jumping_jacks._id|lower %}
-                            {{ jumping_jacks.count }} sets of Jumping Jacks
-                        {% endif %}
+                    {% if session.user|lower == jumping_jacks._id|lower %}
+                    {{ jumping_jacks.count }} sets of Jumping Jacks
+                    {% endif %}
                     {% endfor %}
-                    
+
                     <br>
-                    
+
                     {% for plank in plank %}
-                        {% if session.user|lower == plank._id|lower %}
-                            {{ plank.count }} sets of Planks
-                        {% endif %}
+                    {% if session.user|lower == plank._id|lower %}
+                    {{ plank.count }} sets of Planks
+                    {% endif %}
                     {% endfor %}
-                    
+
                     <br>
-                    
+
                     {% for sit_ups in sit_ups %}
-                        {% if session.user|lower == sit_ups._id|lower %}
-                            {{ sit_ups.count }} sets of Sit Ups
-                        {% endif %}
+                    {% if session.user|lower == sit_ups._id|lower %}
+                    {{ sit_ups.count }} sets of Sit Ups
+                    {% endif %}
                     {% endfor %}
-                    
+
                     <br>
-                    
+
                     {% for tricep_dips in tricep_dips %}
-                        {% if session.user|lower == tricep_dips._id|lower %}
-                            {{ tricep_dips.count }} sets of Tricep Dips
-                        {% endif %}
+                    {% if session.user|lower == tricep_dips._id|lower %}
+                    {{ tricep_dips.count }} sets of Tricep Dips
+                    {% endif %}
                     {% endfor %}
-                    
+
                     <br>
-                    
+
                     {% for mountain_climbers in mountain_climbers %}
-                        {% if session.user|lower == mountain_climbers._id|lower %}
-                            {{ mountain_climbers.count }} sets of Mountain Climbers
-                        {% endif %}
+                    {% if session.user|lower == mountain_climbers._id|lower %}
+                    {{ mountain_climbers.count }} sets of Mountain Climbers
+                    {% endif %}
                     {% endfor %}
-                    
+
                     <br>
-                    
+
                     {% for bear_crawl in bear_crawl %}
-                        {% if session.user|lower == bear_crawl._id|lower %}
-                            {{ bear_crawl.count }} sets of Bear Crawl
-                        {% endif %}
+                    {% if session.user|lower == bear_crawl._id|lower %}
+                    {{ bear_crawl.count }} sets of Bear Crawl
+                    {% endif %}
                     {% endfor %}
-                    
+
                     <br>
-                    
+
                     {% for glute_bridges in glute_bridges %}
-                        {% if session.user|lower == glute_bridges._id|lower %}
-                            {{ glute_bridges.count }} sets of Glute Bridges
-                        {% endif %}
+                    {% if session.user|lower == glute_bridges._id|lower %}
+                    {{ glute_bridges.count }} sets of Glute Bridges
+                    {% endif %}
                     {% endfor %}
-                    
-                    
+
+
                 </p>
             </li>
         </ul>
     </div>
 </div>
+<!-- Modal Trigger -->
+<div class="row center-content">
+    <div class="col s12 m12 center-content">
+        <a class="waves-effect waves-light btn coral_red charcole-grey modal-trigger" href="#modal1"><i class="fas fa-trash-alt"></i> Delete
+            Profile</a>
+    </div>
+</div>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4>Are you sure you want to delete your profile?</h4>
+        <p>You will lose all of your workouts</p>
+    </div>
+    <div class="modal-footer">
+        <a href="{{ url_for('delete_profile')}}" class="modal-close waves-effect waves-green btn-flat">Yes</a>
+        <a href="{{ url_for('profile', username=session['user']) }}" class="modal-close waves-effect waves-green btn-flat">No</a>
+    </div>
+</div>
+
+
 {% endblock %}

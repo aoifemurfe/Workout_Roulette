@@ -231,11 +231,23 @@ def edit_workout(workouts_id):
     return render_template("edit_workout.html", workouts=workouts)
 
 
+
+# delete a workout on view workouts page
 @app.route("/delete_workout/<workouts_id>")
 def delete_workout(workouts_id):
     mongo.db.workouts.remove({"_id": ObjectId(workouts_id)})
     flash("Workout Removed Successfully")
     return redirect(url_for('view_workouts', username=session['user']))
+
+
+# delete profile on profile page
+@app.route("/delete_profile")
+def delete_profile():
+    mongo.db.workouts.remove({"user": session['user']})
+    mongo.db.users.remove({"username": session['user']})
+    session.pop("user")
+    flash("Your Profile has been deleted")
+    return redirect(url_for("login"))
 
 
 if __name__ == "__main__":

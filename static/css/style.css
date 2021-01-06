@@ -1,10 +1,7 @@
 .text-shadow {
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
-.row {
-    margin-left: 0rem!important;
-    margin-right: 0rem!important;
-}
+
 .charcole-grey {
     background-color: #303030;
 }
@@ -32,6 +29,9 @@
 color: #c92e00;
 }
 
+.larger-font-size {
+    font-size: 200%;
+}
 
 .toprow {
     height: 100px;
@@ -42,9 +42,20 @@ color: #c92e00;
     margin-bottom: 0!important;
 }
 
-.larger-font-size {
-    font-size: 200%;
+.row {
+    margin-left: 0rem!important;
+    margin-right: 0rem!important;
 }
+  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+
 
 .homepage_icons {
     font-size: 900%;
