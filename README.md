@@ -19,6 +19,7 @@
    - Frequent User Goals
         1. As a Frequent User, I want to look through previous workouts and edit or delete them. 
         2. As a Frequent User, I want to see some basic statistics about the workouts that I have completed. 
+        3. As a Frequent User, I want to have the option to delete my profile  if I wish to.
 ### Design
    - Colour Scheme
         1. The two main colours used are grey and coral red to align with the logo. 
@@ -50,6 +51,7 @@ Edit Workout Page - [View](https://github.com/aoifemurfe/Workout_Roulette/blob/d
 -   [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
 -   [Javascript](https://en.wikipedia.org/wiki/JavaScript)
 -   [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
+-   [Jinja](https://palletsprojects.com/p/jinja/)
 
 ### Frameworks, Libraries & Programs Used
 1. [Materialize 1.0.0:](https://materializecss.com/about.html)
@@ -63,7 +65,17 @@ Edit Workout Page - [View](https://github.com/aoifemurfe/Workout_Roulette/blob/d
 5. [Canva:](https://www.canva.com/)
     - Canva was used to create the logo for the website.
 6. [Wireframe  Pro:](https://wireframepro.mockflow.com)
-Wireframe Pro was used to create the wireframes during the design process.
+    - Wireframe Pro was used to create the wireframes during the design process.
+7. [Flask](https://flask.palletsprojects.com/en/1.1.x/)
+    - Flas was  used to The following flask programs were used to allow interaction with the MongoDB database  and for regisration and login functionality eg generating password hash. 
+        -   click==7.1.2
+        -   dnspython==2.0.0
+        -   Flask==1.1.2
+        -   Flask-PyMongo==2.3.0 
+        -   itsdangerous==1.1.0 
+        -   pymongo==3.11.2 
+        -   Werkzeug==1.0.1 
+
 
 ### Testing
 The lighthouse report at https://web.dev/measure/ was used to assess the website based on 4 categories
@@ -81,11 +93,11 @@ The lighthouse report at https://web.dev/measure/ was used to assess the website
         - Upon entering the site, users are greeted with a Welcome banner and 3 cards below it that explain the main functions of the site which are to create and account, create workouts and then log them in a database to view at anytime. 
         - The logo in the navbar depicts a dumbell and contains the name workout roulette which tells the user that this is a website for exercise and it has a roulette element to it.
   2. As a First Time Visitor, I want to be able to easily be able to navigate throughout the page to find content.
-        - The navbar at the top shows the user easily each of the pages available to them. 
-  3. As a First Time Visitor, I want to quickly search an area and find local amenities.
-        - Directly below the navbar is a clean and easily readable input bar. The inputs are organised into 3 sections and follow an order to arrange inputs           into 1 easy directive sentence. 
-        - The user has the option to select the type, radius and central location for their  search. 
-  4. To generate the search there is a large search button that generates results on the map below.
+        - The navbar at the top shows the user easily each of the pages available to them and this dynamically changes based on whether the user has signed in or not. 
+  3. As a First Time Visitor, I want to be able to create an account and log a workout. 
+        - The homepage contains a call to action in the first card for the use to click the link to the registration page. 
+        - Registration is quick and easy. Upon registration the user is shown a flash message confirming that they have created an account.   Upon registration the user is led to the create workout page to allow them to create their first workout. 
+  4. To generate the search there is a large search button that generates results on the ma
 
 ### Returning Visitor Goals
 1. As a Returning Visitor, I want to perform different types of searches in different areas
