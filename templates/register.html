@@ -2,6 +2,7 @@
 
 {% block content %}
 
+<!-- title -->
 <div class="row">
     <div class="col s12 m8 offset-m2">
         <h2 class="center-align dark_red">Register</h2>
@@ -16,6 +17,7 @@
                     <div class="row">
                         <div class="col s2">
                         </div>
+                        <!-- username -->
                         <div class="input-field col s8">
                             <i class="fas fa-user coral_red prefix"></i>
                             <input id="username" name="username" type="text" minlength="5" maxlength="15"
@@ -28,6 +30,7 @@
                     <div class="row">
                         <div class="col s2">
                         </div>
+                        <!-- password -->
                         <div class="input-field col s8">
                             <i class="fas fa-lock coral_red prefix"></i>
                             <input id="password" name="password" type="password" minlength="5" maxlength="15"
@@ -37,9 +40,11 @@
                         <div class="col s2">
                         </div>
                     </div>
+                    <!-- bottons -->
                     <button class="btn waves-effect waves-light charcole-grey" type="submit" name="action">Register
                     </button>
                 </form>
+                <!-- call to login -->
                 <div class="row">
                     <div class="col s6 offset-s3">
                         <p><a class="dark_red p-1" href="{{ url_for('login') }}">Already have an account?</a></p>
