@@ -21,11 +21,13 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
+#redirect to homepage
 @app.route("/go_home")
 def go_home():
     return render_template("home.html")
 
 
+#registration functionality
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -104,10 +106,12 @@ def profile(username):
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
     workouts = mongo.db.workouts.find()
+    #calculate the total minutes worked out for the profile page
     total = mongo.db.workouts.aggregate([
                     {"$match": {"status": "on"}},
                     {"$group": {"_id": "$user" , "minutes": {"$sum": "$timing"}}}
                    ])
+    #calculate the number of sets of each exercise for the profile page
     burpees = mongo.db.workouts.aggregate([
                     {"$match": {"status": "on","$text": {"$search": "Burpees"}}},
                     {"$group": {"_id": "$user" , "count": { "$sum": "$count" }}}
@@ -172,13 +176,16 @@ def logout():
 @app.route("/create_workout", methods=["GET", "POST"])
 def create_workout():
     if request.method == "POST":
+        #completed vs not completed workout
         status = "on" if request.form.get("status") else "off"
+        #use intervals to create an int for calculating the total time worked out
         if request.form.get("interval") == "Medium - 45secs on, 15secs off": 
             timing = 45 
         elif request.form.get("interval") == "Hard - 60secs on, 0 secs off":
             timing = 60
         else:
             timing = 30
+        #get the form inputs to submit to mongodb
         logworkout = {
             "user": session["user"],
             "date": request.form.get("date"),
@@ -202,13 +209,16 @@ def create_workout():
 @app.route("/edit_workout/<workouts_id>",methods=["GET", "POST"])
 def edit_workout(workouts_id):
     if request.method == "POST":
+        #completed vs not completed workout
         status = "on" if request.form.get("status") else "off"
+        #use intervals to create an int for calculating the total time worked out
         if request.form.get("interval") == "Medium - 45secs on, 15secs off": 
             timing = 45 
         elif request.form.get("interval") == "Hard - 60secs on, 0 secs off":
             timing = 60
         else:
             timing = 30
+            #get the form inputs to update mongodb
         updateworkout = {
             "user": session["user"],
             "date": request.form.get("date"),
@@ -243,8 +253,11 @@ def delete_workout(workouts_id):
 # delete profile on profile page
 @app.route("/delete_profile")
 def delete_profile():
+    #delete all workouts from workouts collection
     mongo.db.workouts.remove({"user": session['user']})
+    #delete profile from users collection
     mongo.db.users.remove({"username": session['user']})
+    #remove cookie to log out
     session.pop("user")
     flash("Your Profile has been deleted")
     return redirect(url_for("login"))
