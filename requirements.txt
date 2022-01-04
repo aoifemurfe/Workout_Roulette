@@ -32,7 +32,7 @@ GitPython==3.1.18
 idna==3.2
 importlib-metadata==4.8.1
 ipykernel==4.10.1
-ipython==7.27.0
+ipython==7.15.0
 ipython-genutils==0.2.0
 isort==5.9.3
 itsdangerous==1.1.0
